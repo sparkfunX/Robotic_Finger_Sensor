@@ -1555,11 +1555,6 @@ for I2C operation</text>
 <wire x1="139.7" y1="127" x2="139.7" y2="106.68" width="0.1524" layer="91"/>
 <junction x="139.7" y="106.68"/>
 </segment>
-<segment>
-<wire x1="68.58" y1="33.02" x2="66.04" y2="33.02" width="0.1524" layer="91"/>
-<label x="66.04" y="33.02" size="1.27" layer="95" rot="R180" xref="yes"/>
-<pinref part="J1" gate="G$1" pin="1"/>
-</segment>
 </net>
 <net name="3.3V" class="0">
 <segment>

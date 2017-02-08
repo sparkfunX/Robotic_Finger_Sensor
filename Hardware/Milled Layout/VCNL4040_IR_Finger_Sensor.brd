@@ -607,7 +607,7 @@ These rules have been curated by SparkFuns DFM commitee. After doing much resear
 <vertex x="17.78" y="17.78"/>
 <vertex x="17.78" y="0"/>
 </polygon>
-<via x="8.89" y="12.7" extent="1-16" drill="0.508"/>
+<via x="10.16" y="13.97" extent="1-16" drill="0.508"/>
 </signal>
 <signal name="SCL">
 <contactref element="R1" pad="1"/>
@@ -655,18 +655,9 @@ These rules have been curated by SparkFuns DFM commitee. After doing much resear
 <signal name="INT">
 <contactref element="U1" pad="6"/>
 <contactref element="R3" pad="1"/>
-<contactref element="J1" pad="1"/>
-<wire x1="3.39" y1="5.08" x2="6.35" y2="5.08" width="0.254" layer="1"/>
-<wire x1="6.35" y1="5.08" x2="7.0825" y2="5.8125" width="0.254" layer="1"/>
-<wire x1="7.0825" y1="5.8125" x2="7.0825" y2="6.35" width="0.254" layer="1"/>
-<wire x1="7.0825" y1="6.35" x2="7.0825" y2="7.89" width="0.254" layer="1"/>
-<wire x1="12.7" y1="1.27" x2="13.97" y2="2.54" width="0.254" layer="16"/>
-<wire x1="13.97" y1="2.54" x2="13.97" y2="3.81" width="0.254" layer="16"/>
-<wire x1="13.97" y1="3.81" x2="12.7" y2="5.08" width="0.254" layer="16"/>
-<wire x1="12.7" y1="5.08" x2="6.35" y2="5.08" width="0.254" layer="16"/>
-<wire x1="6.35" y1="5.08" x2="5.08" y2="6.35" width="0.254" layer="16"/>
-<via x="5.08" y="6.35" extent="1-16" drill="0.508"/>
-<wire x1="5.08" y1="6.35" x2="7.0825" y2="6.35" width="0.254" layer="1"/>
+<wire x1="3.39" y1="5.08" x2="6.731" y2="5.08" width="0.254" layer="1"/>
+<wire x1="7.0825" y1="5.4315" x2="7.0825" y2="7.89" width="0.254" layer="1"/>
+<wire x1="7.0825" y1="5.4315" x2="6.731" y2="5.08" width="0.254" layer="1"/>
 </signal>
 <signal name="3.3V">
 <contactref element="SJ2" pad="2"/>
@@ -704,11 +695,17 @@ These rules have been curated by SparkFuns DFM commitee. After doing much resear
 <signal name="N$1">
 <contactref element="U1" pad="5"/>
 <contactref element="U1" pad="2"/>
-<wire x1="6.0075" y1="7.89" x2="6.0075" y2="8.8015" width="0.254" layer="1"/>
-<wire x1="6.0075" y1="8.8015" x2="6.096" y2="8.89" width="0.254" layer="1"/>
-<wire x1="6.096" y1="8.89" x2="8.001" y2="8.89" width="0.254" layer="1"/>
-<wire x1="8.001" y1="8.89" x2="8.1575" y2="9.0465" width="0.254" layer="1"/>
-<wire x1="8.1575" y1="9.0465" x2="8.1575" y2="9.89" width="0.254" layer="1"/>
+<wire x1="8.1575" y1="9.89" x2="8.1575" y2="11.7815" width="0.254" layer="1"/>
+<wire x1="8.1575" y1="11.7815" x2="8.128" y2="11.811" width="0.254" layer="1"/>
+<via x="8.128" y="11.811" extent="1-16" drill="0.508"/>
+<wire x1="8.128" y1="11.811" x2="5.08" y2="11.811" width="0.254" layer="16"/>
+<wire x1="5.08" y1="11.811" x2="4.318" y2="11.049" width="0.254" layer="16"/>
+<wire x1="4.318" y1="11.049" x2="4.318" y2="7.112" width="0.254" layer="16"/>
+<wire x1="4.318" y1="7.112" x2="5.08" y2="6.35" width="0.254" layer="16"/>
+<wire x1="5.08" y1="6.35" x2="5.969" y2="6.35" width="0.254" layer="16"/>
+<via x="5.969" y="6.35" extent="1-16" drill="0.508"/>
+<wire x1="5.969" y1="6.35" x2="6.0075" y2="6.3885" width="0.254" layer="1"/>
+<wire x1="6.0075" y1="6.3885" x2="6.0075" y2="7.89" width="0.254" layer="1"/>
 </signal>
 </signals>
 <errors>
@@ -744,6 +741,14 @@ These rules have been curated by SparkFuns DFM commitee. After doing much resear
 <approved hash="5,16,759c679ecdddfc47"/>
 <approved hash="19,16,c89ec7721a00e9fc"/>
 <approved hash="19,16,c8f55c28b9030822"/>
+<approved hash="19,1,0951355087b34457"/>
+<approved hash="19,1,6657392af0ef9e73"/>
+<approved hash="19,1,d616d00e9ac96334"/>
+<approved hash="5,1,f3bece8c13a5a410"/>
+<approved hash="19,1,41517d52e1b12257"/>
+<approved hash="5,1,90ffd24fa9088cce"/>
+<approved hash="19,1,b517b30dd3ca2a35"/>
+<approved hash="19,1,8fc773ce73dc93a1"/>
 </errors>
 </board>
 </drawing>
