@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="7.6.0">
+<eagle version="7.7.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="yes"/>
@@ -1425,7 +1425,6 @@ Holes are offset 0.005" from center, locking pins in place during soldering.
 <part name="U1" library="SparkX" deviceset="VCNL4040" device=""/>
 <part name="J1" library="SparkFun-Connectors" deviceset="CONN_05" device=""/>
 <part name="R3" library="SparkFun-Resistors" deviceset="8.2KOHM" device="-0603-1/10W-5%" value="8.2k"/>
-<part name="SUPPLY4" library="SparkFun-PowerSymbols" deviceset="3.3V" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -1457,7 +1456,7 @@ for I2C operation</text>
 <instance part="C4" gate="G$1" x="73.66" y="106.68"/>
 <instance part="SJ2" gate="G$1" x="154.94" y="132.08" rot="R270"/>
 <instance part="SUPPLY8" gate="G$1" x="55.88" y="40.64"/>
-<instance part="SUPPLY11" gate="G$1" x="134.62" y="121.92"/>
+<instance part="SUPPLY11" gate="G$1" x="134.62" y="134.62"/>
 <instance part="SUPPLY12" gate="G$1" x="154.94" y="139.7"/>
 <instance part="SUPPLY1" gate="G$1" x="93.98" y="121.92"/>
 <instance part="SUPPLY2" gate="G$1" x="83.82" y="114.3"/>
@@ -1467,8 +1466,7 @@ for I2C operation</text>
 <instance part="GND8" gate="1" x="83.82" y="99.06"/>
 <instance part="U1" gate="G$1" x="114.3" y="109.22"/>
 <instance part="J1" gate="G$1" x="76.2" y="27.94" rot="R180"/>
-<instance part="R3" gate="G$1" x="139.7" y="132.08" rot="R90"/>
-<instance part="SUPPLY4" gate="G$1" x="139.7" y="139.7"/>
+<instance part="R3" gate="G$1" x="134.62" y="127" rot="R90"/>
 </instances>
 <busses>
 </busses>
@@ -1545,17 +1543,6 @@ for I2C operation</text>
 <wire x1="147.32" y1="132.08" x2="147.32" y2="129.54" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="INT" class="0">
-<segment>
-<wire x1="132.08" y1="106.68" x2="139.7" y2="106.68" width="0.1524" layer="91"/>
-<label x="154.94" y="106.68" size="1.27" layer="95" xref="yes"/>
-<pinref part="U1" gate="G$1" pin="INT"/>
-<pinref part="R3" gate="G$1" pin="1"/>
-<wire x1="139.7" y1="106.68" x2="154.94" y2="106.68" width="0.1524" layer="91"/>
-<wire x1="139.7" y1="127" x2="139.7" y2="106.68" width="0.1524" layer="91"/>
-<junction x="139.7" y="106.68"/>
-</segment>
-</net>
 <net name="3.3V" class="0">
 <segment>
 <wire x1="68.58" y1="25.4" x2="55.88" y2="25.4" width="0.1524" layer="91"/>
@@ -1585,15 +1572,9 @@ for I2C operation</text>
 <pinref part="SUPPLY3" gate="G$1" pin="3.3V"/>
 </segment>
 <segment>
-<pinref part="SUPPLY11" gate="G$1" pin="3.3V"/>
-<pinref part="U1" gate="G$1" pin="ANODE"/>
-<wire x1="134.62" y1="121.92" x2="134.62" y2="119.38" width="0.1524" layer="91"/>
-<wire x1="134.62" y1="119.38" x2="132.08" y2="119.38" width="0.1524" layer="91"/>
-</segment>
-<segment>
 <pinref part="R3" gate="G$1" pin="2"/>
-<pinref part="SUPPLY4" gate="G$1" pin="3.3V"/>
-<wire x1="139.7" y1="137.16" x2="139.7" y2="139.7" width="0.1524" layer="91"/>
+<pinref part="SUPPLY11" gate="G$1" pin="3.3V"/>
+<wire x1="134.62" y1="134.62" x2="134.62" y2="132.08" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$1" class="0">
@@ -1603,6 +1584,14 @@ for I2C operation</text>
 <wire x1="137.16" y1="101.6" x2="137.16" y2="96.52" width="0.1524" layer="91"/>
 <pinref part="U1" gate="G$1" pin="CATHODE_SEN"/>
 <wire x1="137.16" y1="96.52" x2="132.08" y2="96.52" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$2" class="0">
+<segment>
+<pinref part="U1" gate="G$1" pin="ANODE"/>
+<wire x1="134.62" y1="119.38" x2="132.08" y2="119.38" width="0.1524" layer="91"/>
+<pinref part="R3" gate="G$1" pin="1"/>
+<wire x1="134.62" y1="121.92" x2="134.62" y2="119.38" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
