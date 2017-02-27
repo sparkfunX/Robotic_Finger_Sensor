@@ -14,7 +14,7 @@
 
 #define VCNL4040_ADDR 0x60 //7-bit unshifted I2C address of VCNL4040
 
-//Command Registers have an upper byte and lower byte.
+//Command Registers have an upper byte and lower byte. 
 #define PS_CONF1 0x03
 //#define PS_CONF2 //High byte of PS_CONF1
 #define PS_CONF3 0x04
@@ -25,18 +25,18 @@
 
 void setup()
 {
-  Serial.begin(9600);
+  Serial.begin(115200);
   Serial.println("Hello, world!");
 
   Wire.begin(); //Join i2c bus
 
   int deviceID = readFromCommandRegister(ID);
-  if (deviceID != 0x186)
+  if(deviceID != 0x186)
   {
     Serial.println("Device not found. Check wiring.");
     Serial.print("Expected: 0x186. Heard: 0x");
     Serial.println(deviceID, HEX);
-    while (1); //Freeze!
+    while(1); //Freeze!
   }
   Serial.println("VCNL4040 detected!");
 
@@ -51,34 +51,25 @@ void loop()
   Serial.print(distance);
   Serial.println();
 
-  delay(100);
+  delay(10);
 }
 
 //Configure the various parts of the sensor
 void initVCNL4040()
 {
+  //writeByte(AMBIENT_PARAMETER, 0x7F); //Turn on auto offset, average 128 conversions
+  //writeByte(IR_CURRENT, ir_current_); //Set to 80mA
+  //writeByte(PROXIMITY_MOD, 1); // 1 recommended by Vishay
+  
   //Clear PS_SD to turn on proximity sensing
-  //byte conf1 = 0b00000000; //Clear PS_SD bit to begin reading
-  byte conf1 = 0b00001110; //Integrate 8T, Clear PS_SD bit to begin reading
-  byte conf2 = 0b00001000; //Set PS to 16-bit
-  //byte conf2 = 0b00000000; //Clear PS to 12-bit
-  writeToCommandRegister(PS_CONF1, conf1, conf2); //Command register, low byte, high byte
-
+  writeToCommandRegister(PS_CONF1, 0x00, 0x00); //Command register, low byte, high byte
+  
   //Set the options for PS_CONF3 and PS_MS bytes
   byte conf3 = 0x00;
   //byte ms = 0b00000010; //Set IR LED current to 100mA
   //byte ms = 0b00000110; //Set IR LED current to 180mA
-  byte ms = 0b00000111; //Set IR LED current to 200mA
+  byte ms = 0b00000111; //Set IR LED current to 180mA
   writeToCommandRegister(PS_CONF3, conf3, ms);
-
-  int testConf1 = readFromCommandRegister(PS_CONF1);
-  Serial.print("testConf1: 0x");
-  Serial.println(testConf1, HEX);
-
-  int testConf3 = readFromCommandRegister(PS_CONF3);
-  Serial.print("testConf3: 0x");
-  Serial.println(testConf3, HEX);
-  //while (1);
 }
 
 //Reads a two byte value from a command register
@@ -90,10 +81,12 @@ unsigned int readFromCommandRegister(byte commandCode)
 
   Wire.requestFrom(VCNL4040_ADDR, 2); //Command codes have two bytes stored in them
 
-  unsigned int data = Wire.read();
-  data |= Wire.read() << 8;
+  while(!Wire.available()) delay(1);
 
-  return (data);
+  byte lowVal = Wire.read();
+  byte highVal = Wire.read();
+
+  return ((unsigned int)(highVal) << 8 | lowVal);
 }
 
 //Write a value to a spot
@@ -106,11 +99,11 @@ void writeByte(byte addr, byte val)
 }
 
 //Write a two byte value to a Command Register
-void writeToCommandRegister(byte commandCode, byte lowVal, byte highVal)
+void writeToCommandRegister(byte addr, byte lowVal, byte highVal)
 {
   Wire.beginTransmission(VCNL4040_ADDR);
-  Wire.write(commandCode);
-  Wire.write(lowVal); //Low byte of command
-  Wire.write(highVal); //High byte of command
+  Wire.write(addr);
+  Wire.write((byte)lowVal); //Low byte of command
+  Wire.write((byte)(highVal>>8)); //High byte of command
   Wire.endTransmission(); //Release bus
 }
