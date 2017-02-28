@@ -1,0 +1,14 @@
+version;4;4;http://eagleup.wordpress.com/;
+settings;/Applications/EAGLE-7.6.0/models/;/opt/local/bin/convert;/opt/local/bin/composite;rm;
+color;0x266844;0x208549;silver;ivory;
+outline-line;0.000000;-1.270000;13.970000;-1.270000;1.600000;
+outline-line;0.000000;-1.270000;0.000000;10.160000;1.600000;
+outline-line;13.970000;10.160000;13.970000;-1.270000;1.600000;
+outline-line;10.160000;13.970000;3.810000;13.970000;1.600000;
+outline-arc;3.810000;10.160000;3.810000;90.000000;180.000000;1.600000;
+outline-arc;10.160000;10.160000;3.810000;0.000000;90.000000;1.600000;
+outline;0.000000;-1.270000;13.970000;13.970000;1.600000;
+outline-complete;1.60;
+hole;1.397;1.270;1.016;0.800;
+hole;12.573;1.270;1.016;0.800;
+hole-complete;holes;2;0x266844;
