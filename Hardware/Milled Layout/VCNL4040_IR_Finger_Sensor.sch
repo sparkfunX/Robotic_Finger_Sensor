@@ -265,13 +265,15 @@ Standard 8.5x11 US Letter frame</description>
 <circle x="0" y="0.9144" radius="0.59784375" width="0.127" layer="51"/>
 <wire x1="-0.508" y1="-1.7272" x2="0.508" y2="-1.7272" width="0.127" layer="51"/>
 <wire x1="-0.508" y1="-1.7272" x2="0.5334" y2="-1.7272" width="0.127" layer="51" curve="-244.761355"/>
-<wire x1="-1" y1="2" x2="1" y2="2" width="0.1" layer="21"/>
-<wire x1="1" y1="2" x2="1" y2="-2" width="0.1" layer="21"/>
-<wire x1="1" y1="-2" x2="-1" y2="-2" width="0.1" layer="21"/>
-<wire x1="-1" y1="2" x2="-1" y2="-2" width="0.1" layer="21"/>
-<circle x="0" y="0.9144" radius="0.59784375" width="0.127" layer="21"/>
-<wire x1="-0.508" y1="-1.7272" x2="0.508" y2="-1.7272" width="0.127" layer="21"/>
-<wire x1="-0.508" y1="-1.7272" x2="0.5334" y2="-1.7272" width="0.127" layer="21" curve="-244.761355"/>
+<wire x1="-0.381" y1="-1.524" x2="0.381" y2="-1.524" width="0.1778" layer="21"/>
+<wire x1="-0.381" y1="-1.524" x2="0.381" y2="-1.524" width="0.1778" layer="21" curve="-236.144974"/>
+<circle x="0" y="0.9144" radius="0.457903125" width="0.1778" layer="21"/>
+<wire x1="-1.016" y1="2.286" x2="1.016" y2="2.286" width="0.127" layer="21"/>
+<wire x1="1.016" y1="2.286" x2="1.016" y2="2.159" width="0.127" layer="21"/>
+<wire x1="-1.016" y1="2.286" x2="-1.016" y2="2.159" width="0.127" layer="21"/>
+<wire x1="-1.016" y1="-2.159" x2="-1.016" y2="-2.286" width="0.127" layer="21"/>
+<wire x1="-1.016" y1="-2.286" x2="1.016" y2="-2.286" width="0.127" layer="21"/>
+<wire x1="1.016" y1="-2.286" x2="1.016" y2="-2.159" width="0.127" layer="21"/>
 </package>
 <package name="STAND-OFF-#2">
 <hole x="0" y="0" drill="2.032"/>
@@ -300,21 +302,21 @@ Standard 8.5x11 US Letter frame</description>
 </symbol>
 </symbols>
 <devicesets>
-<deviceset name="VCNL4040">
+<deviceset name="VCNL4040" prefix="U">
 <gates>
-<gate name="G$1" symbol="VCNL4040" x="0" y="0"/>
+<gate name="U1" symbol="VCNL4040" x="0" y="0"/>
 </gates>
 <devices>
 <device name="" package="VCNL4040">
 <connects>
-<connect gate="G$1" pin="ANODE" pad="4"/>
-<connect gate="G$1" pin="CATHODE_LED" pad="5"/>
-<connect gate="G$1" pin="CATHODE_SEN" pad="2"/>
-<connect gate="G$1" pin="GND" pad="1"/>
-<connect gate="G$1" pin="INT" pad="6"/>
-<connect gate="G$1" pin="SCL" pad="8"/>
-<connect gate="G$1" pin="SDA" pad="7"/>
-<connect gate="G$1" pin="VDD" pad="3"/>
+<connect gate="U1" pin="ANODE" pad="4"/>
+<connect gate="U1" pin="CATHODE_LED" pad="5"/>
+<connect gate="U1" pin="CATHODE_SEN" pad="2"/>
+<connect gate="U1" pin="GND" pad="1"/>
+<connect gate="U1" pin="INT" pad="6"/>
+<connect gate="U1" pin="SCL" pad="8"/>
+<connect gate="U1" pin="SDA" pad="7"/>
+<connect gate="U1" pin="VDD" pad="3"/>
 </connects>
 <technologies>
 <technology name=""/>
@@ -1637,7 +1639,7 @@ Silk outline shows header location.
 <instance part="GND2" gate="1" x="73.66" y="99.06"/>
 <instance part="GND3" gate="1" x="93.98" y="91.44"/>
 <instance part="GND8" gate="1" x="83.82" y="99.06"/>
-<instance part="U1" gate="G$1" x="114.3" y="109.22"/>
+<instance part="U1" gate="U1" x="114.3" y="109.22"/>
 <instance part="U$1" gate="G$1" x="246.38" y="20.32"/>
 <instance part="U$2" gate="G$1" x="243.84" y="20.32"/>
 <instance part="J1" gate="G$1" x="73.66" y="25.4" rot="MR0"/>
@@ -1656,7 +1658,7 @@ Silk outline shows header location.
 <pinref part="GND3" gate="1" pin="GND"/>
 <wire x1="96.52" y1="96.52" x2="93.98" y2="96.52" width="0.1524" layer="91"/>
 <wire x1="93.98" y1="96.52" x2="93.98" y2="93.98" width="0.1524" layer="91"/>
-<pinref part="U1" gate="G$1" pin="GND"/>
+<pinref part="U1" gate="U1" pin="GND"/>
 </segment>
 <segment>
 <pinref part="C1" gate="G$1" pin="2"/>
@@ -1683,7 +1685,7 @@ Silk outline shows header location.
 <wire x1="147.32" y1="111.76" x2="165.1" y2="111.76" width="0.1524" layer="91"/>
 <wire x1="147.32" y1="119.38" x2="147.32" y2="111.76" width="0.1524" layer="91"/>
 <junction x="147.32" y="111.76"/>
-<pinref part="U1" gate="G$1" pin="SCL"/>
+<pinref part="U1" gate="U1" pin="SCL"/>
 </segment>
 </net>
 <net name="SDA" class="0">
@@ -1699,7 +1701,7 @@ Silk outline shows header location.
 <wire x1="162.56" y1="114.3" x2="165.1" y2="114.3" width="0.1524" layer="91"/>
 <wire x1="162.56" y1="119.38" x2="162.56" y2="114.3" width="0.1524" layer="91"/>
 <junction x="162.56" y="114.3"/>
-<pinref part="U1" gate="G$1" pin="SDA"/>
+<pinref part="U1" gate="U1" pin="SDA"/>
 </segment>
 </net>
 <net name="3.3V" class="0">
@@ -1713,7 +1715,7 @@ Silk outline shows header location.
 <wire x1="96.52" y1="119.38" x2="93.98" y2="119.38" width="0.1524" layer="91"/>
 <pinref part="SUPPLY1" gate="G$1" pin="3.3V"/>
 <wire x1="93.98" y1="121.92" x2="93.98" y2="119.38" width="0.1524" layer="91"/>
-<pinref part="U1" gate="G$1" pin="VDD"/>
+<pinref part="U1" gate="U1" pin="VDD"/>
 </segment>
 <segment>
 <pinref part="SUPPLY2" gate="G$1" pin="3.3V"/>
@@ -1727,7 +1729,7 @@ Silk outline shows header location.
 </segment>
 <segment>
 <pinref part="SUPPLY11" gate="G$1" pin="3.3V"/>
-<pinref part="U1" gate="G$1" pin="ANODE"/>
+<pinref part="U1" gate="U1" pin="ANODE"/>
 <wire x1="134.62" y1="119.38" x2="132.08" y2="119.38" width="0.1524" layer="91"/>
 <wire x1="134.62" y1="121.92" x2="134.62" y2="119.38" width="0.1524" layer="91"/>
 </segment>
@@ -1744,10 +1746,10 @@ Silk outline shows header location.
 </net>
 <net name="N$1" class="0">
 <segment>
-<pinref part="U1" gate="G$1" pin="CATHODE_LED"/>
+<pinref part="U1" gate="U1" pin="CATHODE_LED"/>
 <wire x1="132.08" y1="101.6" x2="137.16" y2="101.6" width="0.1524" layer="91"/>
 <wire x1="137.16" y1="101.6" x2="137.16" y2="96.52" width="0.1524" layer="91"/>
-<pinref part="U1" gate="G$1" pin="CATHODE_SEN"/>
+<pinref part="U1" gate="U1" pin="CATHODE_SEN"/>
 <wire x1="137.16" y1="96.52" x2="132.08" y2="96.52" width="0.1524" layer="91"/>
 </segment>
 </net>
