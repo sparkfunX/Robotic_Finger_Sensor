@@ -5,9 +5,9 @@
    Date: February 14th, 2017
    License: This code is public domain but you buy me a beer if you use this and we meet someday (Beerware License).
 
-   Simple proximity test.
+   Used to do prelium test of production units.
 
-   Serial.print at 9600 baud to serial monitor.
+   Serial.print at 115200 baud to serial monitor.
 */
 
 #include <Wire.h>
@@ -25,33 +25,37 @@
 
 void setup()
 {
-  Serial.begin(9600);
+  Serial.begin(115200);
   Serial.println("Hello, world!");
 
   Wire.begin(); //Join i2c bus
-
-  int deviceID = readFromCommandRegister(ID);
-  if (deviceID != 0x186)
-  {
-    Serial.println("Device not found. Check wiring.");
-    Serial.print("Expected: 0x186. Heard: 0x");
-    Serial.println(deviceID, HEX);
-    while (1); //Freeze!
-  }
-  Serial.println("VCNL4040 detected!");
-
-  initVCNL4040(); //Configure sensor
 }
 
 void loop()
 {
-  int distance = readFromCommandRegister(PS_DATA_L); //Get proximity values
+  int deviceID = readFromCommandRegister(ID);
+  if (deviceID != 0x186)
+  {
+    Serial.println("Device not found.");
+  }
+  else
+  {
+    initVCNL4040(); //Configure sensor
 
-  Serial.print("distance: ");
-  Serial.print(distance);
-  Serial.println();
+    while(1)
+    {
+      int distance = readFromCommandRegister(PS_DATA_L); //Get proximity values
+      if(distance == 0xFFFF) break;
+  
+      Serial.print("distance: ");
+      Serial.print(distance);
+      Serial.println();
+      delay(250);
+    }
+    
+  }
 
-  delay(100);
+  delay(250);
 }
 
 //Configure the various parts of the sensor
