@@ -111,6 +111,7 @@ void loop()
     Serial.print(",");
     Serial.print(fa2);
     Serial.print(",");
+    
     //Serial.print(",");
     //Serial.print(fa2derivative);
 
