@@ -1,8 +1,8 @@
 /*
-   VCNL4040 Proximity and Ambient Light Sensor - Basic test code example
-   By: Rob Reynolds
+   Basic test of the VCNL4040 sensor
+   By: Nathan Seidle
    SparkFun Electronics
-   Date: February 14th, 2017
+   Date: March 10th, 2017
    License: This code is public domain but you buy me a beer if you use this and we meet someday (Beerware License).
 
    Used to do prelium test of production units.
@@ -16,11 +16,8 @@
 
 //Command Registers have an upper byte and lower byte.
 #define PS_CONF1 0x03
-//#define PS_CONF2 //High byte of PS_CONF1
 #define PS_CONF3 0x04
-//#define PS_MS //High byte of PS_CONF3
 #define PS_DATA_L 0x08
-//#define PS_DATA_M //High byte of PS_DATA_L
 #define ID  0x0C
 
 void setup()

@@ -1,23 +1,20 @@
 /*
-  VCNL4040 Proximity and Ambient Light Sensor - Basic test code example
-  By: Rob Reynolds
+  Robotic Finger Sensor - Sensing a touch and controlling a gripper
+  By: Nathan Seidle
   SparkFun Electronics
-  Date: February 14th, 2017
-  License: This code is public domain but you buy me a beer if you use this and we meet someday (Beerware License).
+  Date: March 14th, 2017
+  License: This software is open source and can be used for any purpose.
 
-  This code is heavily based on Robotic Material's force proximity eval code: https://github.com/RoboticMaterials/FA-I-sensor
-  It has been modified to work with the VCNL4040 sensor.
+  This code identifies touch/release events and controls (stops) a servo to create a robotic gripper with light grip,
+  on most any sized/shaped object.
 
-  This code demonstrates the force response of the RM Pressure Sensor eval kit.
+  Open a terminal window at 115200 and view the state as you touch the sensor.
+  Press 'z' or 'c' to begin closing the servo. Stops (plus a small grip amount) when touch is detected.
 
-  The output will be distance reading and a touch or release character.
-
-  This code works on an Arduino Uno and Teensy
+  This code was designed to work with an Arduino Uno but should work nicely with Teensy and others.
 
   Brought to you by SparkFun (orignial code), the Correll Lab at the University
   of Colorado, Boulder and Robotic Materials Inc.
-
-  This software is open source and can be used for any purpose.
 */
 
 /***** Library parameters ****/
@@ -98,6 +95,8 @@ void setup()
 
 void loop()
 {
+  unsigned long startTime = millis();
+
   if (Serial.available())
   {
     byte incoming = Serial.read();
@@ -111,8 +110,6 @@ void loop()
       gripperState = STATE_OPENING;
     }
   }
-
-  unsigned long startTime = millis();
 
   proximity_value = readProximity(); //Get proximity values
   fa2 = (signed int) average_value - proximity_value;
@@ -193,6 +190,7 @@ void loop()
     gripperState = STATE_STOPPED;
   }
 
+  //Print all the things
   Serial.print("ServoPosition: ");
   Serial.print(servoPosition);
 

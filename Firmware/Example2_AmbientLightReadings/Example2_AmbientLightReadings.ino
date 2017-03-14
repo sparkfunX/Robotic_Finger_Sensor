@@ -1,5 +1,5 @@
 /*
-   VCNL4040 Proximity and Ambient Light Sensor - Basic test code example
+   Robotic Finger Sensor - Read IR, Ambient, and White light values
    By: Rob Reynolds
    SparkFun Electronics
    Date: February 14th, 2017

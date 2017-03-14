@@ -1,11 +1,11 @@
 /*
-   VCNL4040 Proximity and Ambient Light Sensor - Basic test code example
+   Robotic Finger Sensor - VCNL4040 basic test code example
    By: Rob Reynolds
    SparkFun Electronics
    Date: February 14th, 2017
    License: This code is public domain but you buy me a beer if you use this and we meet someday (Beerware License).
 
-   Simple proximity test.
+   Outputs the IR Proximity Value from the VCNL4040 sensor.
 
    Serial.print at 9600 baud to serial monitor.
 */

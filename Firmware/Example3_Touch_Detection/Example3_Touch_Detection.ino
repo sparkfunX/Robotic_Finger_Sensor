@@ -1,26 +1,25 @@
 /*
   VCNL4040 Proximity and Ambient Light Sensor - Basic test code example
-  By: Rob Reynolds
+  By: Nathan Seidle and Nikolaus Correll
   SparkFun Electronics
   Date: February 14th, 2017
-  License: This code is public domain but you buy me a beer if you use this and we meet someday (Beerware License).
-
-  This code is heavily based on Robotic Material's force proximity eval code: https://github.com/RoboticMaterials/FA-I-sensor
-  It has been modified to work with the VCNL4040 sensor.
+  License: This software is open source and can be used for any purpose.
 
   This code demonstrates the force response of the RM Pressure Sensor eval kit.
 
-  The output will be distance reading and a touch or release character.
+  Open the 'Serial Plotter' at 115200bps and you should see the graph of proximity and touch detection.
+
+  Open the terminal window at 115200bps and you should see the raw proximity readings as well as the characters
+  'T' and 'R' when a touch or release is detected.
 
   Press c to turn off continuous mode.
   Press h for help.
 
   This code works on an Arduino Uno and Teensy 
 
-  Brought to you by SparkFun (orignial code), the Correll Lab at the University
-  of Colorado, Boulder and Robotic Materials Inc.
-
-  This software is open source and can be used for any purpose.
+  This code is heavily based on Robotic Material's force proximity eval code: https://github.com/RoboticMaterials/FA-I-sensor
+  It has been modified to work with the VCNL4040 sensor. Brought to you by SparkFun (orignial code), the 
+  Correll Lab at the University of Colorado, Boulder and Robotic Materials Inc.
 */
 
 /***** Library parameters ****/
