@@ -60,7 +60,8 @@ byte touchState = 0; //Statemachine variable
 
 int servoPosition = 150; //Keeps track of where the servo is currently at
 const byte servoOpenPosition = 150; //Max open gripper position
-const byte servoClosedPosition = 65; //Min closed gripper position
+//const byte servoClosedPosition = 65; //Min closed gripper position
+const byte servoClosedPosition = 25; //For testing
 const byte closingRate = 1; //Rate at which to close the servo. Setting too high risks servo putting too much pressure before sensing touch
 const byte openingRate = 100; //Rate at which to open the servo. Can be large.
 const byte gripAmount = 5; //Additional servo position from contact point to get grip
