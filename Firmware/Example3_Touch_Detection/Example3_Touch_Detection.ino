@@ -28,6 +28,7 @@
 
 #include <Wire.h> //For Arduino Uno
 //#include <i2c_t3.h> //Use <i2c_t3.h> for Teensy
+#include <SFE_MicroOLED.h>  // Include the SFE_MicroOLED library
 
 #include <math.h>
 
@@ -48,14 +49,35 @@ int continuous_mode = 1; //Default on
 int single_shot = 0;
 int touch_analysis = 1; //Default on
 
+
+//////////////////////////
+// MicroOLED Definition //
+//////////////////////////
+#define PIN_RESET 9  // Connect RST to pin 9
+#define DC_JUMPER 1
+
+//////////////////////////////////
+// MicroOLED Object Declaration //
+//////////////////////////////////
+MicroOLED oled(PIN_RESET, DC_JUMPER);    // I2C declaration
+
+
+
 void setup()
 {
+  WIRE.begin();
+  
   Serial.begin(115200);
   Serial.println("Robotic finger sensor eval online");
 
-  WIRE.begin();
+  delay(100);
+  oled.begin();    // Initialize the OLED
+  oled.clear(ALL); // Clear the display's internal memory
+  oled.display();  // Display what's in the buffer (splashscreen)
+  delay(1000);     // Delay 1000 ms
+  oled.clear(PAGE); // Clear the buffer.
 
-  delay(1000);
+  //delay(1000);
 
   if (testVCNL4040() == false)
   {
@@ -134,6 +156,16 @@ void loop()
   if (continuous_mode || single_shot) {
     single_shot = 0;
     Serial.println();
+
+    oled.clear(PAGE);     // Clear the screen
+    oled.setCursor(0, 0); // Set cursor to top-left
+    oled.print("Prox:");  
+    oled.println(proximity_value); 
+    //oled.println("Fa-II:");  
+    //oled.println(fa2); 
+    
+    oled.display(); // Draw on the screen
+    
   }
 
   // Do this last
