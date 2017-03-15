@@ -30,6 +30,7 @@ Servo gripperServo;
 #include <math.h>
 
 const byte servo = 9; //Attach servo PWM pin here. Any PWM pin is ok.
+const byte button = 7; //Press the button, cause gripper to close or open
 
 #define LOOP_TIME 10  // loop duration in ms
 
@@ -70,6 +71,8 @@ void setup()
 
   WIRE.begin();
 
+  pinMode(button, INPUT_PULLUP);
+
   //Setup servo
   gripperServo.attach(servo);
   gripperServo.write(servoOpenPosition); //Goto the resting position (gripper open)
@@ -96,6 +99,19 @@ void setup()
 void loop()
 {
   unsigned long startTime = millis();
+
+  if(digitalRead(button) == LOW)
+  {
+    delay(50); //Debounce
+    while(digitalRead(button) == LOW) delay(1); //Wait for user to stop pressing button
+    
+    if (touchState == TOUCHING) gripperState = STATE_OPENING;
+    else if(gripperState == STATE_CLOSING) gripperState = STATE_OPENING;
+    else if(gripperState == STATE_OPEN) gripperState = STATE_CLOSING;
+    else if(gripperState == STATE_CLOSED) gripperState = STATE_OPENING;
+    else if(gripperState == STATE_OPENING && touchState != TOUCHING) gripperState = STATE_CLOSING;
+    else gripperState = STATE_OPENING;
+  }
 
   if (Serial.available())
   {
@@ -153,7 +169,7 @@ void loop()
   //See if we have a proximity that is too large, then we aren't touching
   if(proximity_value < 200)
   {
-    if(touchState == TOUCHING) touchState = NOT_TOUCHING;
+    touchState = NOT_TOUCHING;
   }
 
   if (gripperState == STATE_CLOSING)
