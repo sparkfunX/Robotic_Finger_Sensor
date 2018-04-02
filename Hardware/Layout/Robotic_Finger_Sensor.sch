@@ -2520,15 +2520,15 @@ Commonly used for small ceramic capacitors. Like our 0.1uF (http://www.sparkfun.
 <wire x1="-1.5" y1="1.5" x2="1.5" y2="1.5" width="0.127" layer="51"/>
 <text x="-1.5" y="2" size="0.508" layer="25">&gt;Name</text>
 <text x="-1.5" y="-2.5" size="0.508" layer="27">&gt;Value</text>
-<circle x="-2.1" y="1.5" radius="0.14141875" width="0" layer="21"/>
-<wire x1="1.2" y1="1.75" x2="1.75" y2="1.75" width="0.1778" layer="21"/>
-<wire x1="1.75" y1="1.75" x2="1.75" y2="1.2" width="0.1778" layer="21"/>
-<wire x1="1.75" y1="-1.2" x2="1.75" y2="-1.75" width="0.1778" layer="21"/>
-<wire x1="1.75" y1="-1.75" x2="1.2" y2="-1.75" width="0.1778" layer="21"/>
-<wire x1="-1.2" y1="-1.75" x2="-1.75" y2="-1.75" width="0.1778" layer="21"/>
-<wire x1="-1.75" y1="-1.75" x2="-1.75" y2="-1.2" width="0.1778" layer="21"/>
-<wire x1="-1.75" y1="1.2" x2="-1.75" y2="1.75" width="0.1778" layer="21"/>
-<wire x1="-1.75" y1="1.75" x2="-1.2" y2="1.75" width="0.1778" layer="21"/>
+<circle x="-1.9" y="2.1" radius="0.14141875" width="0" layer="21"/>
+<wire x1="1.2" y1="1.75" x2="2.15" y2="1.75" width="0.1778" layer="21"/>
+<wire x1="2.15" y1="1.75" x2="2.15" y2="1.2" width="0.1778" layer="21"/>
+<wire x1="2.15" y1="-1.2" x2="2.15" y2="-1.75" width="0.1778" layer="21"/>
+<wire x1="2.15" y1="-1.75" x2="1.2" y2="-1.75" width="0.1778" layer="21"/>
+<wire x1="-1.2" y1="-1.75" x2="-2.15" y2="-1.75" width="0.1778" layer="21"/>
+<wire x1="-2.15" y1="-1.75" x2="-2.15" y2="-1.2" width="0.1778" layer="21"/>
+<wire x1="-2.15" y1="1.2" x2="-2.15" y2="1.75" width="0.1778" layer="21"/>
+<wire x1="-2.15" y1="1.75" x2="-1.2" y2="1.75" width="0.1778" layer="21"/>
 <smd name="1" x="-1.2" y="1" dx="1.4" dy="1" layer="1" rot="R180"/>
 <rectangle x1="-1.5" y1="0.5" x2="-0.5" y2="1.5" layer="51"/>
 <smd name="2" x="-1.2" y="-1" dx="1.4" dy="1" layer="1" rot="R180"/>
@@ -2537,6 +2537,7 @@ Commonly used for small ceramic capacitors. Like our 0.1uF (http://www.sparkfun.
 <rectangle x1="0.5" y1="-1.5" x2="1.5" y2="-0.5" layer="51"/>
 <smd name="4" x="1.2" y="1" dx="1.4" dy="1" layer="1"/>
 <rectangle x1="0.5" y1="0.5" x2="1.5" y2="1.5" layer="51"/>
+<circle x="-0.8" y="0.4" radius="0.22360625" width="0.127" layer="51"/>
 </package>
 </packages>
 <symbols>
