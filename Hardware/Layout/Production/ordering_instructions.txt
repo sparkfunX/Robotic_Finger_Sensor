@@ -5,4 +5,5 @@ soldermask color, Black
 silkscreen color, White
 oz copper, 1oz
 finish, HASL lead free
-stencils, top+bottom
+stencils, top
+pcs per panel, 30

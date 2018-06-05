@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="7.7.0">
+<eagle version="9.0.1">
 <drawing>
 <settings>
 <setting alwaysvectorfont="yes"/>
+<setting keepoldvectorfont="yes"/>
 <setting verticaltext="up"/>
 </settings>
 <grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
@@ -66,6 +67,8 @@
 <layer number="57" name="tCAD" color="7" fill="1" visible="no" active="no"/>
 <layer number="59" name="tCarbon" color="7" fill="1" visible="no" active="no"/>
 <layer number="60" name="bCarbon" color="7" fill="1" visible="no" active="no"/>
+<layer number="88" name="SimResults" color="9" fill="1" visible="yes" active="yes"/>
+<layer number="89" name="SimProbes" color="9" fill="1" visible="yes" active="yes"/>
 <layer number="90" name="Modules" color="5" fill="1" visible="yes" active="yes"/>
 <layer number="91" name="Nets" color="2" fill="1" visible="yes" active="yes"/>
 <layer number="92" name="Busses" color="1" fill="1" visible="yes" active="yes"/>
@@ -145,6 +148,8 @@
 <layer number="229" name="229bmp" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="230" name="230bmp" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="231" name="231bmp" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="232" name="Eagle3D_PG2" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="233" name="Eagle3D_PG3" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="248" name="Housing" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="249" name="Edge" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="250" name="Descript" color="3" fill="1" visible="no" active="no"/>
@@ -2326,18 +2331,6 @@ Commonly used for small ceramic capacitors. Like our 0.1uF (http://www.sparkfun.
 <vertex x="1.8364" y="-0.0051" curve="-90.012967"/>
 </polygon>
 </package>
-<package name="0805">
-<description>&lt;p&gt;&lt;b&gt;Generic 2012 (0805) package&lt;/b&gt;&lt;/p&gt;
-&lt;p&gt;0.2mm courtyard excess rounded to nearest 0.05mm.&lt;/p&gt;</description>
-<smd name="1" x="-0.9" y="0" dx="0.8" dy="1.2" layer="1"/>
-<smd name="2" x="0.9" y="0" dx="0.8" dy="1.2" layer="1"/>
-<text x="0" y="0.889" size="0.6096" layer="25" font="vector" ratio="20" align="bottom-center">&gt;NAME</text>
-<text x="0" y="-0.889" size="0.6096" layer="27" font="vector" ratio="20" align="top-center">&gt;VALUE</text>
-<wire x1="-1.5" y1="0.8" x2="1.5" y2="0.8" width="0.0508" layer="39"/>
-<wire x1="1.5" y1="0.8" x2="1.5" y2="-0.8" width="0.0508" layer="39"/>
-<wire x1="1.5" y1="-0.8" x2="-1.5" y2="-0.8" width="0.0508" layer="39"/>
-<wire x1="-1.5" y1="-0.8" x2="-1.5" y2="0.8" width="0.0508" layer="39"/>
-</package>
 <package name="1206">
 <description>&lt;p&gt;&lt;b&gt;Generic 3216 (1206) package&lt;/b&gt;&lt;/p&gt;
 &lt;p&gt;0.2mm courtyard excess rounded to nearest 0.05mm.&lt;/p&gt;</description>
@@ -2369,46 +2362,34 @@ Commonly used for small ceramic capacitors. Like our 0.1uF (http://www.sparkfun.
 </symbol>
 </symbols>
 <devicesets>
-<deviceset name="2.2UF" prefix="C">
-<description>&lt;h3&gt;2.2µF ceramic capacitors&lt;/h3&gt;
+<deviceset name="4.7UF" prefix="C">
+<description>&lt;h3&gt;4.7µF ceramic capacitors&lt;/h3&gt;
 &lt;p&gt;A capacitor is a passive two-terminal electrical component used to store electrical energy temporarily in an electric field.&lt;/p&gt;</description>
 <gates>
-<gate name="G$1" symbol="CAP" x="0" y="0"/>
+<gate name="G$1" symbol="CAP" x="0" y="-2.54"/>
 </gates>
 <devices>
-<device name="-0603-10V-20%" package="0603">
+<device name="0603" package="0603">
 <connects>
 <connect gate="G$1" pin="1" pad="1"/>
 <connect gate="G$1" pin="2" pad="2"/>
 </connects>
 <technologies>
 <technology name="">
-<attribute name="PROD_ID" value="CAP-07888" constant="no"/>
-<attribute name="VALUE" value="2.2uF" constant="no"/>
+<attribute name="PROD_ID" value="CAP-08280"/>
+<attribute name="VALUE" value="4.7uF"/>
 </technology>
 </technologies>
 </device>
-<device name="-0805-25V-(+80/-20%)" package="0805">
+<device name="-1206-16V-(+80/-20%)" package="1206">
 <connects>
 <connect gate="G$1" pin="1" pad="1"/>
 <connect gate="G$1" pin="2" pad="2"/>
 </connects>
 <technologies>
 <technology name="">
-<attribute name="PROD_ID" value="CAP-11624"/>
-<attribute name="VALUE" value="2.2uF"/>
-</technology>
-</technologies>
-</device>
-<device name="-1206-50V-10%" package="1206">
-<connects>
-<connect gate="G$1" pin="1" pad="1"/>
-<connect gate="G$1" pin="2" pad="2"/>
-</connects>
-<technologies>
-<technology name="">
-<attribute name="PROD_ID" value="CAP-10009"/>
-<attribute name="VALUE" value="2.2uF"/>
+<attribute name="PROD_ID" value="CAP-10300" constant="no"/>
+<attribute name="VALUE" value="4.7uF" constant="no"/>
 </technology>
 </technologies>
 </device>
@@ -2511,61 +2492,80 @@ Commonly used for small ceramic capacitors. Like our 0.1uF (http://www.sparkfun.
 </deviceset>
 </devicesets>
 </library>
-<library name="MS5637">
+<library name="LPS25HB">
 <packages>
-<package name="MS5637">
-<wire x1="1.5" y1="1.5" x2="1.5" y2="-1.5" width="0.127" layer="51"/>
-<wire x1="1.5" y1="-1.5" x2="-1.5" y2="-1.5" width="0.127" layer="51"/>
-<wire x1="-1.5" y1="-1.5" x2="-1.5" y2="1.5" width="0.127" layer="51"/>
-<wire x1="-1.5" y1="1.5" x2="1.5" y2="1.5" width="0.127" layer="51"/>
-<text x="-1.5" y="2" size="0.508" layer="25">&gt;Name</text>
-<text x="-1.5" y="-2.5" size="0.508" layer="27">&gt;Value</text>
-<circle x="-1.9" y="2.1" radius="0.14141875" width="0" layer="21"/>
-<wire x1="1.2" y1="1.75" x2="2.15" y2="1.75" width="0.1778" layer="21"/>
-<wire x1="2.15" y1="1.75" x2="2.15" y2="1.2" width="0.1778" layer="21"/>
-<wire x1="2.15" y1="-1.2" x2="2.15" y2="-1.75" width="0.1778" layer="21"/>
-<wire x1="2.15" y1="-1.75" x2="1.2" y2="-1.75" width="0.1778" layer="21"/>
-<wire x1="-1.2" y1="-1.75" x2="-2.15" y2="-1.75" width="0.1778" layer="21"/>
-<wire x1="-2.15" y1="-1.75" x2="-2.15" y2="-1.2" width="0.1778" layer="21"/>
-<wire x1="-2.15" y1="1.2" x2="-2.15" y2="1.75" width="0.1778" layer="21"/>
-<wire x1="-2.15" y1="1.75" x2="-1.2" y2="1.75" width="0.1778" layer="21"/>
-<smd name="1" x="-1.2" y="1" dx="1.4" dy="1" layer="1" rot="R180"/>
-<rectangle x1="-1.5" y1="0.5" x2="-0.5" y2="1.5" layer="51"/>
-<smd name="2" x="-1.2" y="-1" dx="1.4" dy="1" layer="1" rot="R180"/>
-<rectangle x1="-1.5" y1="-1.5" x2="-0.5" y2="-0.5" layer="51"/>
-<smd name="3" x="1.2" y="-1" dx="1.4" dy="1" layer="1"/>
-<rectangle x1="0.5" y1="-1.5" x2="1.5" y2="-0.5" layer="51"/>
-<smd name="4" x="1.2" y="1" dx="1.4" dy="1" layer="1"/>
-<rectangle x1="0.5" y1="0.5" x2="1.5" y2="1.5" layer="51"/>
-<circle x="-0.8" y="0.4" radius="0.22360625" width="0.127" layer="51"/>
+<package name="LPS25HB">
+<wire x1="1.25" y1="1.25" x2="1.25" y2="-1.25" width="0.127" layer="51"/>
+<wire x1="1.25" y1="-1.25" x2="-1.25" y2="-1.25" width="0.127" layer="51"/>
+<wire x1="-1.25" y1="-1.25" x2="-1.25" y2="1.25" width="0.127" layer="51"/>
+<wire x1="-1.25" y1="1.25" x2="1.25" y2="1.25" width="0.127" layer="51"/>
+<text x="-1.25" y="1.75" size="0.508" layer="25">&gt;Name</text>
+<text x="-1.25" y="-2.25" size="0.508" layer="27">&gt;Value</text>
+<circle x="-1.85" y="1.25" radius="0.14141875" width="0" layer="21"/>
+<wire x1="1" y1="1.5" x2="1.5" y2="1.5" width="0.1778" layer="21"/>
+<wire x1="1.5" y1="1.5" x2="1.5" y2="1" width="0.1778" layer="21"/>
+<wire x1="1.5" y1="-1" x2="1.5" y2="-1.5" width="0.1778" layer="21"/>
+<wire x1="1.5" y1="-1.5" x2="1" y2="-1.5" width="0.1778" layer="21"/>
+<wire x1="-1" y1="-1.5" x2="-1.5" y2="-1.5" width="0.1778" layer="21"/>
+<wire x1="-1.5" y1="-1.5" x2="-1.5" y2="-1" width="0.1778" layer="21"/>
+<wire x1="-1.5" y1="1" x2="-1.5" y2="1.5" width="0.1778" layer="21"/>
+<wire x1="-1.5" y1="1.5" x2="-1" y2="1.5" width="0.1778" layer="21"/>
+<smd name="1" x="-1.05" y="0.3" dx="0.8" dy="0.35" layer="1" rot="R180"/>
+<rectangle x1="-1.15" y1="0.15" x2="-0.7" y2="0.45" layer="51"/>
+<smd name="2" x="-1.05" y="-0.3" dx="0.8" dy="0.35" layer="1" rot="R180"/>
+<rectangle x1="-1.15" y1="-0.45" x2="-0.7" y2="-0.15" layer="51"/>
+<smd name="3" x="-0.6" y="-1.05" dx="0.8" dy="0.35" layer="1" rot="R90"/>
+<rectangle x1="-0.75" y1="-1.15" x2="-0.45" y2="-0.7" layer="51"/>
+<smd name="4" x="0" y="-1.05" dx="0.8" dy="0.35" layer="1" rot="R90"/>
+<rectangle x1="-0.15" y1="-1.15" x2="0.15" y2="-0.7" layer="51"/>
+<smd name="5" x="0.6" y="-1.05" dx="0.8" dy="0.35" layer="1" rot="R90"/>
+<rectangle x1="0.45" y1="-1.15" x2="0.75" y2="-0.7" layer="51"/>
+<smd name="6" x="1.05" y="-0.3" dx="0.8" dy="0.35" layer="1"/>
+<rectangle x1="0.7" y1="-0.45" x2="1.15" y2="-0.15" layer="51"/>
+<smd name="7" x="1.05" y="0.3" dx="0.8" dy="0.35" layer="1"/>
+<rectangle x1="0.7" y1="0.15" x2="1.15" y2="0.45" layer="51"/>
+<smd name="8" x="0.6" y="1.05" dx="0.8" dy="0.35" layer="1" rot="R270"/>
+<rectangle x1="0.45" y1="0.7" x2="0.75" y2="1.15" layer="51"/>
+<smd name="9" x="0" y="1.05" dx="0.8" dy="0.35" layer="1" rot="R270"/>
+<rectangle x1="-0.15" y1="0.7" x2="0.15" y2="1.15" layer="51"/>
+<smd name="10" x="-0.6" y="1.05" dx="0.8" dy="0.35" layer="1" rot="R270"/>
+<rectangle x1="-0.75" y1="0.7" x2="-0.45" y2="1.15" layer="51"/>
 </package>
 </packages>
 <symbols>
-<symbol name="MS5637">
-<wire x1="10.16" y1="2.54" x2="10.16" y2="-5.08" width="0.254" layer="94"/>
-<wire x1="10.16" y1="-5.08" x2="-10.16" y2="-5.08" width="0.254" layer="94"/>
-<wire x1="-10.16" y1="-5.08" x2="-10.16" y2="2.54" width="0.254" layer="94"/>
-<wire x1="-10.16" y1="2.54" x2="10.16" y2="2.54" width="0.254" layer="94"/>
-<pin name="GND" x="-12.7" y="-2.54" length="short"/>
-<pin name="VCC" x="-12.7" y="0" length="short"/>
-<pin name="SDA" x="12.7" y="0" length="short" rot="R180"/>
-<pin name="SCL" x="12.7" y="-2.54" length="short" rot="R180"/>
-<text x="-10.16" y="3.048" size="1.778" layer="95">&gt;Name</text>
-<text x="-10.16" y="-7.62" size="1.778" layer="96">&gt;Value</text>
+<symbol name="LPS25HB">
+<wire x1="12.7" y1="7.62" x2="12.7" y2="-7.62" width="0.254" layer="94"/>
+<wire x1="12.7" y1="-7.62" x2="-12.7" y2="-7.62" width="0.254" layer="94"/>
+<wire x1="-12.7" y1="-7.62" x2="-12.7" y2="7.62" width="0.254" layer="94"/>
+<wire x1="-12.7" y1="7.62" x2="12.7" y2="7.62" width="0.254" layer="94"/>
+<pin name="GND" x="-15.24" y="-5.08" length="short"/>
+<pin name="VCC" x="-15.24" y="5.08" length="short"/>
+<pin name="VDD_IO" x="-15.24" y="2.54" length="short"/>
+<pin name="!INT" x="15.24" y="5.08" length="short" rot="R180"/>
+<pin name="SDA/MOSI" x="15.24" y="2.54" length="short" rot="R180"/>
+<pin name="SCL/SCK" x="15.24" y="0" length="short" rot="R180"/>
+<pin name="ADDR/MISO" x="15.24" y="-2.54" length="short" rot="R180"/>
+<pin name="CS" x="15.24" y="-5.08" length="short" rot="R180"/>
+<text x="-12.7" y="8.128" size="1.778" layer="95">&gt;Name</text>
+<text x="-12.7" y="-10.16" size="1.778" layer="96">&gt;Value</text>
 </symbol>
 </symbols>
 <devicesets>
-<deviceset name="MS5637" prefix="U">
+<deviceset name="LPS25HB" prefix="U">
 <gates>
-<gate name="U1" symbol="MS5637" x="0" y="0"/>
+<gate name="U1" symbol="LPS25HB" x="0" y="0"/>
 </gates>
 <devices>
-<device name="" package="MS5637">
+<device name="" package="LPS25HB">
 <connects>
-<connect gate="U1" pin="GND" pad="4"/>
-<connect gate="U1" pin="SCL" pad="3"/>
-<connect gate="U1" pin="SDA" pad="2"/>
-<connect gate="U1" pin="VCC" pad="1"/>
+<connect gate="U1" pin="!INT" pad="7"/>
+<connect gate="U1" pin="ADDR/MISO" pad="5"/>
+<connect gate="U1" pin="CS" pad="6"/>
+<connect gate="U1" pin="GND" pad="3 8 9"/>
+<connect gate="U1" pin="SCL/SCK" pad="2"/>
+<connect gate="U1" pin="SDA/MOSI" pad="4"/>
+<connect gate="U1" pin="VCC" pad="10"/>
+<connect gate="U1" pin="VDD_IO" pad="1"/>
 </connects>
 <technologies>
 <technology name=""/>
@@ -2587,7 +2587,7 @@ Commonly used for small ceramic capacitors. Like our 0.1uF (http://www.sparkfun.
 <parts>
 <part name="R1" library="SparkFun-Resistors" deviceset="2.2KOHM" device="-0603-1/10W-1%" value="2.2k"/>
 <part name="R2" library="SparkFun-Resistors" deviceset="2.2KOHM" device="-0603-1/10W-1%" value="2.2k"/>
-<part name="C1" library="SparkFun-Capacitors" deviceset="2.2UF" device="-0603-10V-20%" value="2.2uF"/>
+<part name="C1" library="SparkFun-Capacitors" deviceset="4.7UF" device="0603" value="4.7uF"/>
 <part name="FRAME2" library="SparkFun-Aesthetics" deviceset="FRAME-LETTER" device=""/>
 <part name="GND4" library="SparkFun" deviceset="GND" device=""/>
 <part name="C4" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0603-25V-(+80/-20%)" value="0.1uF"/>
@@ -2606,7 +2606,6 @@ Commonly used for small ceramic capacitors. Like our 0.1uF (http://www.sparkfun.
 <part name="SUPPLY5" library="SparkFun-PowerSymbols" deviceset="3.3V" device=""/>
 <part name="SUPPLY6" library="SparkFun-PowerSymbols" deviceset="3.3V" device=""/>
 <part name="J2" library="SparkX" deviceset="I2C_STANDARD" device="JS-1MM"/>
-<part name="U3" library="MS5637" deviceset="MS5637" device=""/>
 <part name="C2" library="SparkFun-Capacitors" deviceset="0.1UF" device="-0603-25V-(+80/-20%)" value="0.1uF"/>
 <part name="SUPPLY4" library="SparkFun-PowerSymbols" deviceset="3.3V" device=""/>
 <part name="GND1" library="SparkFun-PowerSymbols" deviceset="GND" device=""/>
@@ -2614,6 +2613,8 @@ Commonly used for small ceramic capacitors. Like our 0.1uF (http://www.sparkfun.
 <part name="GND5" library="SparkFun-PowerSymbols" deviceset="GND" device=""/>
 <part name="FD1" library="SparkFun-Aesthetics" deviceset="FIDUCIAL" device="UFIDUCIAL"/>
 <part name="FD2" library="SparkFun-Aesthetics" deviceset="FIDUCIAL" device="UFIDUCIAL"/>
+<part name="U2" library="LPS25HB" deviceset="LPS25HB" device=""/>
+<part name="SUPPLY10" library="SparkFun-PowerSymbols" deviceset="3.3V" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -2624,13 +2625,12 @@ Commonly used for small ceramic capacitors. Like our 0.1uF (http://www.sparkfun.
 <wire x1="0" y1="66.04" x2="124.46" y2="66.04" width="0.1524" layer="97" style="longdash"/>
 <wire x1="124.46" y1="66.04" x2="147.32" y2="66.04" width="0.1524" layer="97" style="longdash"/>
 <wire x1="147.32" y1="66.04" x2="147.32" y2="35.56" width="0.1524" layer="97" style="longdash"/>
-<text x="58.42" y="43.18" size="2.032" layer="97" align="top-left">VCC must be 2.5-3.6V 
-</text>
+<text x="58.42" y="43.18" size="2.032" layer="97" rot="MR180" align="top-left">VCC must be 2.5-3.6V </text>
 <wire x1="147.32" y1="66.04" x2="248.92" y2="66.04" width="0.1524" layer="97" style="longdash"/>
 <text x="72.644" y="17.272" size="2.032" layer="97" rot="MR180" align="top-left">I2C Port</text>
 <text x="170.942" y="94.234" size="1.778" layer="97">7-bit I2C Adr: 0x60</text>
-<text x="36.322" y="149.352" size="3.048" layer="97">MS5637 Pressure Sensor</text>
-<text x="49.022" y="101.854" size="1.778" layer="97">7-bit I2C Adr: 0x76</text>
+<text x="27.686" y="161.798" size="3.048" layer="97">LPS25HB Pressure Sensor</text>
+<text x="42.672" y="114.554" size="1.778" layer="97">7-bit I2C Address: 0x5D</text>
 <wire x1="124.46" y1="185.42" x2="124.46" y2="66.04" width="0.1524" layer="97" style="longdash"/>
 </plain>
 <instances>
@@ -2656,14 +2656,15 @@ Commonly used for small ceramic capacitors. Like our 0.1uF (http://www.sparkfun.
 <instance part="SUPPLY5" gate="G$1" x="213.36" y="142.24"/>
 <instance part="SUPPLY6" gate="G$1" x="220.98" y="142.24"/>
 <instance part="J2" gate="G$1" x="78.74" y="25.4" rot="MR0"/>
-<instance part="U3" gate="U1" x="71.12" y="124.46"/>
-<instance part="C2" gate="G$1" x="38.1" y="124.46"/>
-<instance part="SUPPLY4" gate="G$1" x="55.88" y="127"/>
-<instance part="GND1" gate="1" x="55.88" y="116.84"/>
-<instance part="SUPPLY7" gate="G$1" x="38.1" y="132.08"/>
-<instance part="GND5" gate="1" x="38.1" y="116.84"/>
+<instance part="C2" gate="G$1" x="30.48" y="129.54"/>
+<instance part="SUPPLY4" gate="G$1" x="43.18" y="139.7"/>
+<instance part="GND1" gate="1" x="43.18" y="121.92"/>
+<instance part="SUPPLY7" gate="G$1" x="30.48" y="137.16"/>
+<instance part="GND5" gate="1" x="30.48" y="121.92"/>
 <instance part="FD1" gate="G$1" x="238.76" y="27.94"/>
 <instance part="FD2" gate="G$1" x="236.22" y="27.94"/>
+<instance part="U2" gate="U1" x="60.96" y="132.08"/>
+<instance part="SUPPLY10" gate="G$1" x="78.74" y="142.24"/>
 </instances>
 <busses>
 </busses>
@@ -2692,18 +2693,18 @@ Commonly used for small ceramic capacitors. Like our 0.1uF (http://www.sparkfun.
 <pinref part="J2" gate="G$1" pin="GND"/>
 </segment>
 <segment>
-<pinref part="U3" gate="U1" pin="GND"/>
 <pinref part="GND1" gate="1" pin="GND"/>
-<wire x1="58.42" y1="121.92" x2="55.88" y2="121.92" width="0.1524" layer="91"/>
-<wire x1="55.88" y1="121.92" x2="55.88" y2="119.38" width="0.1524" layer="91"/>
+<wire x1="45.72" y1="127" x2="43.18" y2="127" width="0.1524" layer="91"/>
+<wire x1="43.18" y1="127" x2="43.18" y2="124.46" width="0.1524" layer="91"/>
+<pinref part="U2" gate="U1" pin="GND"/>
 </segment>
 <segment>
 <pinref part="C2" gate="G$1" pin="2"/>
 <pinref part="GND5" gate="1" pin="GND"/>
-<wire x1="38.1" y1="119.38" x2="38.1" y2="121.92" width="0.1524" layer="91"/>
+<wire x1="30.48" y1="124.46" x2="30.48" y2="127" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="SCL" class="0">
+<net name="SCL/SCK" class="0">
 <segment>
 <wire x1="71.12" y1="30.48" x2="66.04" y2="30.48" width="0.1524" layer="91"/>
 <label x="66.04" y="30.48" size="1.27" layer="95" rot="MR0" xref="yes"/>
@@ -2719,12 +2720,12 @@ Commonly used for small ceramic capacitors. Like our 0.1uF (http://www.sparkfun.
 <pinref part="U1" gate="U1" pin="SCL"/>
 </segment>
 <segment>
-<pinref part="U3" gate="U1" pin="SCL"/>
-<wire x1="83.82" y1="121.92" x2="86.36" y2="121.92" width="0.1524" layer="91"/>
-<label x="86.36" y="121.92" size="1.27" layer="95" xref="yes"/>
+<wire x1="76.2" y1="132.08" x2="81.28" y2="132.08" width="0.1524" layer="91"/>
+<label x="81.28" y="132.08" size="1.27" layer="95" xref="yes"/>
+<pinref part="U2" gate="U1" pin="SCL/SCK"/>
 </segment>
 </net>
-<net name="SDA" class="0">
+<net name="SDA/MOSI" class="0">
 <segment>
 <wire x1="71.12" y1="27.94" x2="66.04" y2="27.94" width="0.1524" layer="91"/>
 <label x="66.04" y="27.94" size="1.27" layer="95" rot="MR0" xref="yes"/>
@@ -2740,9 +2741,9 @@ Commonly used for small ceramic capacitors. Like our 0.1uF (http://www.sparkfun.
 <pinref part="U1" gate="U1" pin="SDA"/>
 </segment>
 <segment>
-<pinref part="U3" gate="U1" pin="SDA"/>
-<wire x1="83.82" y1="124.46" x2="86.36" y2="124.46" width="0.1524" layer="91"/>
-<label x="86.36" y="124.46" size="1.27" layer="95" xref="yes"/>
+<wire x1="76.2" y1="134.62" x2="81.28" y2="134.62" width="0.1524" layer="91"/>
+<label x="81.28" y="134.62" size="1.27" layer="95" xref="yes"/>
+<pinref part="U2" gate="U1" pin="SDA/MOSI"/>
 </segment>
 </net>
 <net name="3.3V" class="0">
@@ -2785,15 +2786,29 @@ Commonly used for small ceramic capacitors. Like our 0.1uF (http://www.sparkfun.
 <wire x1="220.98" y1="142.24" x2="220.98" y2="139.7" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="U3" gate="U1" pin="VCC"/>
 <pinref part="SUPPLY4" gate="G$1" pin="3.3V"/>
-<wire x1="58.42" y1="124.46" x2="55.88" y2="124.46" width="0.1524" layer="91"/>
-<wire x1="55.88" y1="124.46" x2="55.88" y2="127" width="0.1524" layer="91"/>
+<wire x1="45.72" y1="137.16" x2="43.18" y2="137.16" width="0.1524" layer="91"/>
+<wire x1="43.18" y1="137.16" x2="43.18" y2="139.7" width="0.1524" layer="91"/>
+<pinref part="U2" gate="U1" pin="VCC"/>
+<pinref part="U2" gate="U1" pin="VDD_IO"/>
+<wire x1="45.72" y1="134.62" x2="43.18" y2="134.62" width="0.1524" layer="91"/>
+<wire x1="43.18" y1="134.62" x2="43.18" y2="137.16" width="0.1524" layer="91"/>
+<junction x="43.18" y="137.16"/>
 </segment>
 <segment>
 <pinref part="C2" gate="G$1" pin="1"/>
 <pinref part="SUPPLY7" gate="G$1" pin="3.3V"/>
-<wire x1="38.1" y1="132.08" x2="38.1" y2="129.54" width="0.1524" layer="91"/>
+<wire x1="30.48" y1="137.16" x2="30.48" y2="134.62" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="U2" gate="U1" pin="ADDR/MISO"/>
+<wire x1="76.2" y1="129.54" x2="78.74" y2="129.54" width="0.1524" layer="91"/>
+<wire x1="78.74" y1="142.24" x2="78.74" y2="129.54" width="0.1524" layer="91"/>
+<pinref part="SUPPLY10" gate="G$1" pin="3.3V"/>
+<pinref part="U2" gate="U1" pin="CS"/>
+<wire x1="76.2" y1="127" x2="78.74" y2="127" width="0.1524" layer="91"/>
+<wire x1="78.74" y1="129.54" x2="78.74" y2="127" width="0.1524" layer="91"/>
+<junction x="78.74" y="129.54"/>
 </segment>
 </net>
 <net name="N$1" class="0">
@@ -2810,10 +2825,4 @@ Commonly used for small ceramic capacitors. Like our 0.1uF (http://www.sparkfun.
 </sheets>
 </schematic>
 </drawing>
-<compatibility>
-<note version="6.3" minversion="6.2.2" severity="warning">
-Since Version 6.2.2 text objects can contain more than one line,
-which will not be processed correctly with this version.
-</note>
-</compatibility>
 </eagle>

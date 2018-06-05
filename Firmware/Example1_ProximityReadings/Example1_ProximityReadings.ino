@@ -41,11 +41,22 @@ void setup()
   Serial.println("VCNL4040 detected!");
 
   initVCNL4040(); //Configure sensor
+
+  for (int x = 0 ; x < 0x07 ; x++)
+  {
+    Serial.print("Register 0x");
+    Serial.print(x, HEX);
+    Serial.print(": 0x");
+    Serial.print(readFromCommandRegister(x), HEX);
+    Serial.println();
+  }
+  Serial.println();
+  
 }
 
 void loop()
 {
-  int distance = readFromCommandRegister(PS_DATA_L); //Get proximity values
+  unsigned int distance = readFromCommandRegister(PS_DATA_L); //Get proximity values
 
   Serial.print("distance: ");
   Serial.print(distance);
@@ -80,6 +91,10 @@ unsigned int readFromCommandRegister(byte commandCode)
   Wire.endTransmission(false); //Send a restart command. Do not release bus.
 
   Wire.requestFrom(VCNL4040_ADDR, 2); //Command codes have two bytes stored in them
+
+    uint8_t lsb = Wire.read();
+    uint8_t msb = Wire.read();
+    return ((uint16_t)msb << 8 | lsb);
 
   unsigned int data = Wire.read();
   data |= Wire.read() << 8;
