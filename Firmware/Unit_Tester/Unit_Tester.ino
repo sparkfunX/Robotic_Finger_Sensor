@@ -5,104 +5,64 @@
    Date: March 10th, 2017
    License: This code is public domain but you buy me a beer if you use this and we meet someday (Beerware License).
 
-   Used to do prelium test of production units.
+   Used to do prelim test of production units.
 
-   Serial.print at 115200 baud to serial monitor.
+   Serial.print at 9600 baud to serial monitor.
 */
 
 #include <Wire.h>
 
-#define VCNL4040_ADDR 0x60 //7-bit unshifted I2C address of VCNL4040
+#include "SparkFun_VCNL4040_Arduino_Library.h" //Library: http://librarymanager/All#SparkFun_VCNL4040
+VCNL4040 proximitySensor;
 
-//Command Registers have an upper byte and lower byte.
-#define PS_CONF1 0x03
-#define PS_CONF3 0x04
-#define PS_DATA_L 0x08
-#define ID  0x0C
+#include "SparkFun_LPS25HB_Arduino_Library.h"  //Library: http://librarymanager/All#SparkFun_LPS25HB
+LPS25HB pressureSensor;
 
 void setup()
 {
-  Serial.begin(115200);
-  Serial.println("Hello, world!");
+  Serial.begin(9600);
+  Serial.println("Robotic Finger Sensor v2 Example");
 
-  Wire.begin(); //Join i2c bus
+  Wire.begin();
+  Wire.setClock(400000); //Increase I2C bus speed to 400kHz
 }
 
 void loop()
 {
-  int deviceID = readFromCommandRegister(ID);
-  if (deviceID != 0x186)
-  {
-    Serial.println("Device not found.");
-  }
+
+  if (proximitySensor.begin() == true)
+    Serial.print("Proximity good ");
   else
-  {
-    initVCNL4040(); //Configure sensor
+    Serial.print("Proximity not found.");
 
-    while(1)
-    {
-      int distance = readFromCommandRegister(PS_DATA_L); //Get proximity values
-      if(distance == 0xFFFF) break;
-  
-      Serial.print("distance: ");
-      Serial.print(distance);
-      Serial.println();
-      delay(250);
-    }
-    
+  pressureSensor.begin();
+  if (pressureSensor.isConnected() == true)
+    Serial.print(" Pressure good");
+  else
+    Serial.print(" Pressure not found.");
+
+  while (1)
+  {
+    if (proximitySensor.begin() == false) break; //No more sensor!
+    if (pressureSensor.isConnected() == false) break;
+
+    unsigned int proxValue = proximitySensor.getProximity();
+
+    float pressure = pressureSensor.getPressure_hPa();
+    float temp = pressureSensor.getTemperature_degC();
+
+    Serial.print("Prox: ");
+    Serial.print(proxValue);
+
+    Serial.print(" Pressure: ");
+    Serial.print(pressure);
+    Serial.print(", Temp(C): ");
+    Serial.print(temp);
+    Serial.println();
+
+    delay(10);
   }
 
+  Serial.println();
   delay(250);
-}
-
-//Configure the various parts of the sensor
-void initVCNL4040()
-{
-  //Clear PS_SD to turn on proximity sensing
-  //byte conf1 = 0b00000000; //Clear PS_SD bit to begin reading
-  byte conf1 = 0b00001110; //Integrate 8T, Clear PS_SD bit to begin reading
-  byte conf2 = 0b00001000; //Set PS to 16-bit
-  //byte conf2 = 0b00000000; //Clear PS to 12-bit
-  writeToCommandRegister(PS_CONF1, conf1, conf2); //Command register, low byte, high byte
-
-  //Set the options for PS_CONF3 and PS_MS bytes
-  byte conf3 = 0x00;
-  //byte ms = 0b00000010; //Set IR LED current to 100mA
-  //byte ms = 0b00000110; //Set IR LED current to 180mA
-  byte ms = 0b00000111; //Set IR LED current to 200mA
-  writeToCommandRegister(PS_CONF3, conf3, ms);
-}
-
-//Reads a two byte value from a command register
-unsigned int readFromCommandRegister(byte commandCode)
-{
-  Wire.beginTransmission(VCNL4040_ADDR);
-  Wire.write(commandCode);
-  Wire.endTransmission(false); //Send a restart command. Do not release bus.
-
-  Wire.requestFrom(VCNL4040_ADDR, 2); //Command codes have two bytes stored in them
-
-  unsigned int data = Wire.read();
-  data |= Wire.read() << 8;
-
-  return (data);
-}
-
-//Write a value to a spot
-void writeByte(byte addr, byte val)
-{
-  Wire.beginTransmission(VCNL4040_ADDR);
-  Wire.write(addr);
-  Wire.write(val);
-  Wire.endTransmission(); //Release bus
-}
-
-//Write a two byte value to a Command Register
-void writeToCommandRegister(byte commandCode, byte lowVal, byte highVal)
-{
-  Wire.beginTransmission(VCNL4040_ADDR);
-  Wire.write(commandCode);
-  Wire.write(lowVal); //Low byte of command
-  Wire.write(highVal); //High byte of command
-  Wire.endTransmission(); //Release bus
 }

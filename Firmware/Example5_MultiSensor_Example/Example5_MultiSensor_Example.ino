@@ -6,11 +6,11 @@
   License: This software is open source and can be used for any purpose.
 
   This code demonstrates how to interact with multiple finger sensors
-  using the PCA9548A I2C multiplexer.
+  using the Qwiic Mux I2C Multiplexer: https://www.sparkfun.com/products/14293
 
-  Open the 'Serial Plotter' at 115200bps and you should see the graph of proximity and touch detection.
+  Open the 'Serial Plotter' at 9600bps and you should see the graph of proximity and touch detection.
 
-  Open the terminal window at 115200bps and you should see the raw proximity readings as well as the characters
+  Open the terminal window at 9600bps and you should see the raw proximity readings as well as the characters
   'T' and 'R' when a touch or release is detected.
 
   Press c to turn off continuous mode.
@@ -23,11 +23,14 @@
   Correll Lab at the University of Colorado, Boulder and Robotic Materials Inc.
 */
 
-#define WIRE Wire //For teensyLC and Arduino Uno
-//#define WIRE Wire1 //For others
-
 #include <Wire.h> //For Arduino Uno
 //#include <i2c_t3.h> //Use <i2c_t3.h> for Teensy
+
+#include "SparkFun_VCNL4040_Arduino_Library.h" //Library: http://librarymanager/All#SparkFun_VCNL4040
+VCNL4040 proximitySensor;
+
+#include "SparkFun_LPS25HB_Arduino_Library.h"  //Library: http://librarymanager/All#SparkFun_LPS25HB
+LPS25HB pressureSensor;
 
 #include <math.h>
 
@@ -49,10 +52,11 @@ int touch_analysis = 1; //Default on
 
 void setup()
 {
-  Serial.begin(115200);
-  Serial.println("Robotic finger sensor eval online");
+  Serial.begin(9600);
+  Serial.println("Robotic Finger Sensor v2 Example");
 
-  WIRE.begin();
+  Wire.begin();
+  Wire.setClock(400000); //Increase I2C bus speed to 400kHz
 
   for (int x = 0 ; x < NUMBER_OF_SENSORS ; x++)
   {
@@ -60,15 +64,20 @@ void setup()
 
     Serial.print("Finger ");
     Serial.print(x);
-    if (testVCNL4040() == false)
-      Serial.println(" failed to init. Check wiring.");
+    if (proximitySensor.begin() == false)
+      Serial.print(" Proximity failed to init. Check wiring.");
     else
-      Serial.println(" online!");
+      Serial.print(" proximity online");
 
-    initVCNL4040(); //Configure sensor
+    if (pressureSensor.begin() == false)
+      Serial.print(", pressure failed to init. Check wiring.");
+    else
+      Serial.print(", pressure online");
 
-    delay(100);
-    proximity_value[x] = readProximity(); //Get proximity values
+    Serial.println();
+    
+    //Init the values for this sensor
+    proximity_value[x] = proximitySensor.getProximity(); //Get proximity values
     average_value[x] = proximity_value[x];
     fa2[x] = 0;
 
@@ -86,7 +95,7 @@ void loop()
   {
     enableMuxPort(x); //Talk to this specific finger, and only this finger
 
-    proximity_value[x] = readProximity(); //Get proximity values
+    proximity_value[x] = proximitySensor.getProximity(); //Get proximity values
     fa2deriv_last[x] = fa2derivative[x];
     fa2derivative[x] = (signed int) average_value[x] - proximity_value[x] - fa2[x];
     fa2[x] = (signed int) average_value[x] - proximity_value[x];

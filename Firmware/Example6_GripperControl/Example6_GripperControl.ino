@@ -2,13 +2,13 @@
   Robotic Finger Sensor - Sensing a touch and controlling a gripper
   By: Nathan Seidle
   SparkFun Electronics
-  Date: March 14th, 2017
+  Date: June 12th, 2018
   License: This software is open source and can be used for any purpose.
 
   This code identifies touch/release events and controls (stops) a servo to create a robotic gripper with light grip,
   on most any sized/shaped object.
 
-  Open a terminal window at 115200 and view the state as you touch the sensor.
+  Open a terminal window at 9600 and view the state as you touch the sensor.
   Press 'z' or 'c' to begin closing the servo. Stops (plus a small grip amount) when touch is detected.
 
   This code was designed to work with an Arduino Uno but should work nicely with Teensy and others.
@@ -17,15 +17,17 @@
   of Colorado, Boulder and Robotic Materials Inc.
 */
 
-/***** Library parameters ****/
 #include <Servo.h>
 Servo gripperServo;
 
-#define WIRE Wire //For teensyLC and Arduino Uno
-//#define WIRE Wire1 //For others
-
 #include <Wire.h> //For Arduino Uno
 //#include <i2c_t3.h> //Use <i2c_t3.h> for Teensy
+
+#include "SparkFun_VCNL4040_Arduino_Library.h" //Library: http://librarymanager/All#SparkFun_VCNL4040
+VCNL4040 proximitySensor;
+
+#include "SparkFun_LPS25HB_Arduino_Library.h"  //Library: http://librarymanager/All#SparkFun_LPS25HB
+LPS25HB pressureSensor;
 
 #include <math.h>
 
@@ -68,9 +70,24 @@ const byte gripAmount = 5; //Additional servo position from contact point to get
 
 void setup()
 {
-  Serial.begin(115200);
+  Serial.begin(9600);
+  Serial.println("Robotic Finger Sensor v2 Example");
 
-  WIRE.begin();
+  Wire.begin();
+  Wire.setClock(400000); //Increase I2C bus speed to 400kHz
+
+  if (proximitySensor.begin() == false)
+  {
+    Serial.println("Proximity sensor not found. Please check wiring.");
+    while (1); //Freeze!
+  }
+  
+  pressureSensor.begin();
+  if(pressureSensor.isConnected() == false)  // The library supports some different error codes such as "DISCONNECTED"
+  {
+    Serial.println("Pressure sensor not found. Please check wiring.");
+    while (1); //Freeze!
+  }
 
   pinMode(button, INPUT_PULLUP);
 
@@ -81,19 +98,8 @@ void setup()
   servoPosition = servoOpenPosition;
   touchState = NOT_TOUCHING;
 
-  delay(100);
-
-  if (testVCNL4040() == false)
-  {
-    Serial.println("Device not found. Check wiring.");
-    while (1); //Freeze!
-  }
-  Serial.println("VCNL4040 detected!");
-
-  initVCNL4040(); //Configure sensor
-
-  delay(10);
-  average_value = readProximity(); //Get proximity values
+  //Setup initial values
+  average_value = proximitySensor.getProximity(); //Get proximity values
   fa2 = 0;
 }
 
@@ -128,7 +134,7 @@ void loop()
     }
   }
 
-  proximity_value = readProximity(); //Get proximity values
+  proximity_value = proximitySensor.getProximity(); //Get proximity values
   fa2 = (signed int) average_value - proximity_value;
 
   //Serial.print(proximity_value);
