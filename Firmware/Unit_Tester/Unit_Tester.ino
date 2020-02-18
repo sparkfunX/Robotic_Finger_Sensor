@@ -18,28 +18,46 @@ VCNL4040 proximitySensor;
 #include "SparkFun_LPS25HB_Arduino_Library.h"  //Library: http://librarymanager/All#SparkFun_LPS25HB
 LPS25HB pressureSensor;
 
+const int LED = 5;
+
+bool proximityPass = false;
+bool pressurePass = false;
+
 void setup()
 {
-  Serial.begin(9600);
+  Serial.begin(115200);
   Serial.println("Robotic Finger Sensor v2 Example");
 
+  pinMode(LED, OUTPUT);
+
   Wire.begin();
-  Wire.setClock(400000); //Increase I2C bus speed to 400kHz
 }
 
 void loop()
 {
 
   if (proximitySensor.begin() == true)
+  {
     Serial.print("Proximity good ");
+    proximityPass = true;
+  }
   else
+  {
     Serial.print("Proximity not found.");
+    proximityPass = false;
+  }
 
   pressureSensor.begin();
   if (pressureSensor.isConnected() == true)
+  {
     Serial.print(" Pressure good");
+    pressurePass = true;
+  }
   else
+  {
     Serial.print(" Pressure not found.");
+    pressurePass = false;
+  }
 
   while (1)
   {
@@ -60,9 +78,15 @@ void loop()
     Serial.print(temp);
     Serial.println();
 
-    delay(10);
+    if (pressure > 810 && pressure < 890 && proxValue < 22000)
+      digitalWrite(LED, HIGH);
+    else
+      digitalWrite(LED, LOW);
+
+    delay(100);
   }
 
   Serial.println();
-  delay(250);
+  delay(100);
+  digitalWrite(LED, LOW);
 }
