@@ -18,7 +18,7 @@ VCNL4040 proximitySensor;
 #include "SparkFun_LPS25HB_Arduino_Library.h"  //Library: http://librarymanager/All#SparkFun_LPS25HB
 LPS25HB pressureSensor;
 
-const int LED = 5;
+const int LED = 13;
 
 bool proximityPass = false;
 bool pressurePass = false;
