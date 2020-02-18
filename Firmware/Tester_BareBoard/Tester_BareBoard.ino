@@ -64,6 +64,7 @@ void loop()
     if (proximitySensor.begin() == false) break; //No more sensor!
     if (pressureSensor.isConnected() == false) break;
 
+    proximitySensor.setLEDCurrent(50); //Set the current used to drive the IR LED - 50mA to 200mA is allowed.
     unsigned int proxValue = proximitySensor.getProximity();
 
     float pressure = pressureSensor.getPressure_hPa();
