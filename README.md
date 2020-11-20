@@ -3,7 +3,7 @@ Robotic Finger Sensor
 
 ![Robotic Finger Sensor](https://cdn.sparkfun.com//assets/parts/1/2/1/4/0/Robotic_Finger_Sensor_04.jpg)
 
-!(https://cdn.sparkfun.com/assets/parts/1/2/8/9/2/14687-Robotic_Finger_Sensor_v2-01b.jpg)  
+(https://cdn.sparkfun.com/assets/parts/1/2/8/9/2/14687-Robotic_Finger_Sensor_v2-01b.jpg)  
 
 [*Robotic Finger Sensor (SPX-14200)*](https://www.sparkfun.com/products/14200)  
 
